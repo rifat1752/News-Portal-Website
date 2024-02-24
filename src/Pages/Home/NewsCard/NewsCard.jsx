@@ -6,7 +6,7 @@ const NewsCard = ({news}) => {
     const { _id,title, rating, details, image_url, total_view} = news;
     return (
         <div>
-            <div className="card m-5 bg-base-100 border shadow-2xl">
+            <div className="card m-5 p-2 bg-base-100  border shadow-2xl">
               <div></div>
               <h1 className="text-2xl font-semibold my-2">{title}</h1>
               <figure className="my-2"><img src={image_url} alt="Shoes" /></figure>

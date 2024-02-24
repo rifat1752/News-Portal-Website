@@ -5,19 +5,22 @@ import { MdFacebook } from "react-icons/md";
 import Qzon1 from "../../../assets/qZone1.png"
 import Qzon2 from "../../../assets/qZone2.png"
 import Qzon3 from "../../../assets/qZone3.png"
+import { AuthContext } from "../../../Providers/AuthProviders";
+import { useContext } from "react";
 
 
 const RightSideNav = () => {
+  const {handleGoogleSignIn, handleGithubSignI} = useContext(AuthContext)
   return (
     <div>
       <div className="">
         <h2 className="ml-2 text-2xl font-bold my-5">Login with</h2>
        <div className="flex flex-col items-center">
-       <button className="btn btn-outline mb-2 w-[90%] btn-info">
+       <button onClick={handleGoogleSignIn} className="btn btn-outline mb-2 w-[90%] btn-info">
         <FcGoogle />
                Log in with Google
          </button>
-        <button className="btn btn-outline mb-2 w-[90%] btn-info">
+        <button onClick={handleGithubSignI} className="btn btn-outline mb-2 w-[90%] btn-info">
         <FaGithub />
         Log in with gitHub
         </button>
