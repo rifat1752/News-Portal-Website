@@ -10,7 +10,7 @@ import { useContext } from "react";
 
 
 const RightSideNav = () => {
-  const {handleGoogleSignIn, handleGithubSignI} = useContext(AuthContext)
+  const {handleGoogleSignIn, handleGithubSignIn} = useContext(AuthContext)
   return (
     <div>
       <div className="">
@@ -20,7 +20,7 @@ const RightSideNav = () => {
         <FcGoogle />
                Log in with Google
          </button>
-        <button onClick={handleGithubSignI} className="btn btn-outline mb-2 w-[90%] btn-info">
+        <button onClick={handleGithubSignIn} className="btn btn-outline mb-2 w-[90%] btn-info">
         <FaGithub />
         Log in with gitHub
         </button>
