@@ -3,14 +3,15 @@ import Header from "../Pages/Shared/Header/Header";
 import BreakingNews from "../Pages/Home/BreakingNews";
 import Navbar from "../Pages/Shared/Navbar/Navbar";
 import Footer from "../Pages/Shared/Footer/Footer";
+import Navbar_Categories from "../Pages/Shared/Navbar/Navbar_Categories";
 
 const Root = () => {
   return (
-    <div className="max-w-7xl mx-auto font-Poppins">
+    <div className="max-w-screen-2xl mx-auto px-5 font-Poppins bg-white">
       <div className="head flex mb-16 flex-col items-center text-center ">
         <Header></Header>
         <BreakingNews></BreakingNews>
-        <Navbar></Navbar>
+        <Navbar_Categories root={true}></Navbar_Categories>
       </div>
 
       <Outlet></Outlet>

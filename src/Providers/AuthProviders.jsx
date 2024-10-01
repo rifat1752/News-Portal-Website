@@ -3,6 +3,7 @@ import { createContext, useEffect, useState } from "react";
 import auth from "../Firebase/firebase.config";
 import userDefault from "../assets/user.png"
 import Swal from 'sweetalert2/src/sweetalert2.js'
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -12,8 +13,19 @@ const AuthProviders = ({children}) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true)
     const [photo,setPhoto] = useState(userDefault);
+    const [category, setCategory] = useState(() => localStorage.getItem('category') || 'all')
+    const [pageIndex, setPageIndex] = useState(() => parseInt(localStorage.getItem('pageIndex')) || 0)
   
-
+    useEffect(() => {
+        if (category) {
+          localStorage.setItem('category', category);
+        }
+      }, [category]);
+    
+      useEffect(() => {
+        localStorage.setItem('pageIndex', pageIndex);
+      }, [pageIndex]);
+    
 
 
     useEffect(() => {
@@ -91,7 +103,7 @@ const handleGithubSignIn =()=>{
            return ()=>{unSubscribe();}
        },[])
 
-    const AuthInfo ={user: user,createUser, logOut,login, loading,handleGoogleSignIn,handleGithubSignIn,photo};
+    const AuthInfo ={user: user,createUser, logOut,login, loading,handleGoogleSignIn,handleGithubSignIn,photo,pageIndex, setPageIndex,category, setCategory};
     return (
       
         <>

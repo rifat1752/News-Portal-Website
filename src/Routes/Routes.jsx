@@ -6,6 +6,18 @@ import Register from "../Pages/Register/Register";
 import News from "../Pages/News/News";
 import PrivateRoute from "./PrivateRoute";
 import About from "../Pages/About/About";
+import Navbar1 from "../Pages/Shared/Navbar/Navbar1";
+import RegularPage from "../Pages/RegularPage/RegularPage";
+import BusinessPage from "../Pages/BusinessPage/BusinessPage";
+import InternationalPage from "../Pages/InternationalPage/InternationalPage";
+import SportsPage from "../Pages/SportsPage/SportsPage";
+import EntertainmentPage from "../Pages/EntertainmentPage/EntertainmentPage";
+import CulturePage from "../Pages/CulturePage/CulturePage";
+import ArtsPage from "../Pages/ArtsPage/ArtsPage";
+import FashionPage from "../Pages/FashionPage/FashionPage";
+import TechnologyPage from "../Pages/TechnologyPage/TechnologyPage";
+import LifeHackpage from "../Pages/LifeHackPage/LifeHackpage";
+import TravelPage from "../Pages/TravelPage/TravelPage";
 
 const router = createBrowserRouter([
   {
@@ -15,16 +27,61 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
-        loader: () => fetch("https://api.npoint.io/e10475768fd73ddea840"),
+        
       },
       {
         path:'/about',
         element:<About></About>
       },
       {
-        path: "/news/:id",
-        loader: ({ params }) =>
-          fetch(`https://api.npoint.io/e10475768fd73ddea840/${params.id}`),
+        path:'/regular',
+        element:<RegularPage/>
+      },{
+        path:'/business',
+        element:<BusinessPage></BusinessPage>
+      },
+      {
+        path:"/international",
+        element:<InternationalPage></InternationalPage>
+      },
+      {
+        path:"/sports",
+        element:<SportsPage/>
+      },
+      {
+        path:"/entertainment",
+        element:<EntertainmentPage/>
+      },
+      {
+        path:"/culture",
+        element:<CulturePage/>
+      },
+      {
+        path:"/arts",
+        element:<ArtsPage/>
+      },
+      {
+        path:"/fashion",
+        element:<FashionPage/>
+      },
+      {
+        path:"/technology",
+        element:<TechnologyPage/>
+      },
+      {
+        path:"/lifehacks",
+        element:<LifeHackpage/>
+      },
+      {
+        path:"/travel",
+        element:<TravelPage/>
+      },
+      {
+        path:"nav",
+        element:<Navbar1/>
+      },
+      {
+        path: "/news/:cat/:id",
         element: (
           <PrivateRoute>
             <News></News>

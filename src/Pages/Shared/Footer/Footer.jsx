@@ -1,11 +1,11 @@
 const Footer = () => {
   return (
     <div>
-      <footer className="footer footer-center p-10 bg-slate-700 text-primary-content">
+      <footer className="footer footer-center p-10 bg-slate-100 text-slate-800">
         <aside>
-          <img src="https://i.ibb.co/mGRTJPH/download.png" alt="" />
+          <img className="h-16" src="https://i.ibb.co.com/vVBx4Lv/logo.png" alt="" />
           <p className="font-bold">
-            NewsTodays Ltd. <br />
+            Libertatio Ltd. <br />
             Providing reliable News since 2022
           </p>
           <p>Copyright © 2024 - All right reserved</p>

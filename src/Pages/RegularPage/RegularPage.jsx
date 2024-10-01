@@ -1,11 +1,10 @@
-
-
-import RightSideNav from "../Shared/RightSideNav/RightSidenNav";
-import NewsCard from "../Shared/NewsCard/NewsCard";
 import { useEffect, useState } from "react";
+import NewsCard from "../Shared/NewsCard/NewsCard";
+import RightSideNav from "../Shared/RightSideNav/RightSidenNav";
 
-const Home = () => {
-  const cat = "all";
+
+const RegularPage = () => {
+    const cat = "regular";
   // const [categoryName, setCategoryName] = useState("All News");
   //      const [selectedCategory, setSelectedCategory] = useState(null);
   const [news, setNews] = useState([]);
@@ -14,27 +13,20 @@ const Home = () => {
     .then(res=>res.json())
     .then(data=>setNews(data.articles))
   },[])
-
-
-
-
-  
-  return (
-    <div >
-     
-     <div className="grid grid-cols-4">
-     <div className="grid col-span-3 grid-cols-1 md:grid-cols-3">
-          
+    return (
+        <div>
+             <div className="grid grid-cols-4">
+        <div className="grid col-span-3 grid-cols-1 md:grid-cols-3">
           {news.map((anews,index) => anews.title !== "[Removed]" && (
             <NewsCard key={index} index={index} cat={cat} anews={anews}></NewsCard>
           ))}
         </div>
         <div className="">
-          <RightSideNav></RightSideNav>
+            <RightSideNav></RightSideNav>
         </div>
-      </div>
-    </div>
-  );
+      </div>    
+        </div>
+    );
 };
 
-export default Home;
+export default RegularPage;
