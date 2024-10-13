@@ -1,12 +1,11 @@
-import { Link } from "react-router-dom";
-import Navbar from "../Shared/Navbar/Navbar";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProviders";
 import Swal from "sweetalert2/src/sweetalert2.js";
 
 const Register = () => {
   const { user, createUser } = useContext(AuthContext);
-
+  const navigate = useNavigate()
   const handleRegister = (e) => {
     e.preventDefault();
 
@@ -22,6 +21,7 @@ const Register = () => {
         const user = result.user;
         console.log(user);
         e.target.reset();
+        navigate(location?.state?location.state:'/');
         Swal.fire({
           title: "success!",
           text: "Register Successful!",
@@ -32,18 +32,23 @@ const Register = () => {
   };
 
   return (
-    <div>
+    <div className="">
       <div>
-        <div className="hero ">
-          <div className="hero-content rounded-sm flex-col ">
+        <div className="">
+          
+          <div className="my-10 ">
             <div className="text-center  mb-5 lg:text-left">
-              <h1 className="text-5xl font-bold ">Register Your Account</h1>
+              <h1 className="text-5xl font-bold text-[#005A7F] text-poppins text-center">Register Your Account</h1>
             </div>
-            <div className="card shrink-0 w-full max-w-sm shadow-2xl shadow-blue-500">
-              <form onSubmit={handleRegister} className="card-body w-96">
+            <div className=" my-10 py-10 flex justify-around items-center">
+            <div >
+              <img className="w-80 h-96" src="https://i.ibb.co.com/tLQbn7q/information.jpg" alt="" />
+            </div>
+            <div className="  border  p-5 rounded max-w-sm shadow-lg shadow-[#005A7F]">
+              <form onSubmit={handleRegister} className="flex flex-col   w-80">
                 <div className="form-control">
                   <label className="label">
-                    <span className="label-text text-base  font-semibold">
+                    <span className="text-2xl text-[#005A7F]  font-semibold">
                       Your Name
                     </span>
                   </label>
@@ -51,13 +56,13 @@ const Register = () => {
                     type="text"
                     name="name"
                     placeholder="Enter your Name"
-                    className="input input-bordered"
+                    className="h-10 outline-none border-b-2 border-[#005A7F] hover:border-[#ff8d6b] transition-all duration-500"
                     required
                   />
                 </div>
                 <div className="form-control">
                   <label className="label">
-                    <span className="label-text text-base  font-semibold">
+                    <span className="text-2xl text-[#005A7F]  font-semibold">
                       Photo URL
                     </span>
                   </label>
@@ -65,13 +70,13 @@ const Register = () => {
                     type="text"
                     name="photo"
                     placeholder="Photo URL"
-                    className="input input-bordered"
+                   className="h-10 outline-none border-b-2 border-[#005A7F] hover:border-[#ff8d6b] transition-all duration-500"
                     required
                   />
                 </div>
                 <div className="form-control">
                   <label className="label">
-                    <span className="label-text text-base  font-semibold">
+                  <span className="text-2xl text-[#005A7F]  font-semibold">
                       Email Address
                     </span>
                   </label>
@@ -79,13 +84,13 @@ const Register = () => {
                     type="email"
                     name="email"
                     placeholder="Enter your email address"
-                    className="input input-bordered"
+                   className="h-10 outline-none border-b-2 border-[#005A7F] hover:border-[#ff8d6b] transition-all duration-500"
                     required
                   />
                 </div>
                 <div className="form-control">
                   <label className="label">
-                    <span className="label-text text-base font-semibold">
+                  <span className="text-2xl text-[#005A7F]  font-semibold">
                       Password
                     </span>
                   </label>
@@ -93,7 +98,7 @@ const Register = () => {
                     type="password"
                     name="password"
                     placeholder="Enter your password"
-                    className="input input-bordered"
+                    className="h-10 outline-none border-b-2 border-[#005A7F] hover:border-[#ff8d6b] transition-all duration-500"
                     required
                   />
                   <label className="label">
@@ -101,11 +106,11 @@ const Register = () => {
                   </label>
                 </div>
                 <div className="form-control mt-6">
-                  <button className="btn bg-slate-900 text-slate-100 text-2xl">
+                  <button className="bg-[#ff8d6b] h-10 text-xl font-bold text-[#364347] rounded-full hover:bg-[#005A7F] hover:text-white transition-all duration-500 ">
                     Register
                   </button>
                 </div>
-                <div className="text-center text-sm">
+                <div className="text-center my-5 text-sm">
                   <p className="ml-5">
                     {" "}
                     Have an Account?{" "}
@@ -119,6 +124,7 @@ const Register = () => {
                   </p>
                 </div>
               </form>
+            </div>
             </div>
           </div>
         </div>

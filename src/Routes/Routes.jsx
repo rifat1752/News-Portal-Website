@@ -18,6 +18,10 @@ import FashionPage from "../Pages/FashionPage/FashionPage";
 import TechnologyPage from "../Pages/TechnologyPage/TechnologyPage";
 import LifeHackpage from "../Pages/LifeHackPage/LifeHackpage";
 import TravelPage from "../Pages/TravelPage/TravelPage";
+import ContactUs from "../Pages/Contact/ContactUs";
+import Dashboard from "../Pages/Dashboard/Dashboard";
+import BookMarked from "../Pages/Dashboard/BookMarked";
+import Profile from "../Pages/Dashboard/Profile";
 
 const router = createBrowserRouter([
   {
@@ -32,6 +36,10 @@ const router = createBrowserRouter([
       {
         path:'/about',
         element:<About></About>
+      },
+      {
+        path:'/contact',
+        element:<ContactUs/>
       },
       {
         path:'/regular',
@@ -96,6 +104,20 @@ const router = createBrowserRouter([
         path: "/register",
         element: <Register></Register>,
       },
+      {
+        path:'/dashboard',
+        element:<Dashboard/>,
+        children:[
+          {
+            index:true,
+            element:<BookMarked></BookMarked>
+          },
+          {
+            path:"profile",
+            element:<Profile/>
+          }
+        ]
+      }
     ],
   },
 ]);

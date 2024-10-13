@@ -23,17 +23,16 @@
     opacity: 0;
     visibility: hidden;
     width: 220px;
-    height: 780px;
+    height: 640px;
     position: absolute;
     transition: 0.5s ease;
     transform: translateX(-300px);
 
 }   
 .link-nav{
-    color: #011a41af;
     font-weight: 600;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
     display: block;
     transition: 0.2s ease-out;
 

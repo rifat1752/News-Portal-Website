@@ -6,43 +6,52 @@ import Qzon1 from "../../../assets/qZone1.png"
 import Qzon2 from "../../../assets/qZone2.png"
 import Qzon3 from "../../../assets/qZone3.png"
 import { AuthContext } from "../../../Providers/AuthProviders";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
+import moment from "moment";
 
 
 const RightSideNav = () => {
   const {handleGoogleSignIn, handleGithubSignIn} = useContext(AuthContext)
+  const [currentTime, setCurrentTime] = useState(moment());
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setCurrentTime(moment());
+    }, 1000);
+
+    // Cleanup the interval on component unmount
+    return () => clearInterval(intervalId);
+  }, []);
+
+  // Split the format for date and time
+  const formattedDate = currentTime.format("dddd, MMMM Do YYYY");
+  const formattedTime = currentTime.format("h:mm:ss A");
+
   return (
-    <div>
-      <div className="">
-        <h2 className="ml-2 text-2xl font-bold my-5">Login with</h2>
-       <div className="flex flex-col items-center">
-       <button onClick={handleGoogleSignIn} className="btn btn-outline mb-2 w-[90%] btn-info">
-        <FcGoogle />
-               Log in with Google
-         </button>
-        <button onClick={handleGithubSignIn} className="btn btn-outline mb-2 w-[90%] btn-info">
-        <FaGithub />
-        Log in with gitHub
+    <div className="w-60  h-96 float-end  border-l-2 flex flex-col gap-1  border-[#ff8d6b]">
+        <div className="py-2 border-b">
+          <div className=" text-center  font-semibold text-poppins">{formattedTime}</div>
+          <div className=" text-center">{formattedDate}</div>
+        </div>
+      <div className=" border-b">
+       <div className="flex flex-col ">
+       <button onClick={handleGoogleSignIn} className="mb-1 pl-16 hover:bg-[#ff8d6b] hover:text-white text-slate-700 flex items-center gap-2 text-xl w-full h-12  font-semibold">
+       Log in with
+        <FcGoogle />  
+       </button>
+        <button onClick={handleGithubSignIn} className="mb-2 pl-16  hover:bg-[#ff8d6b] hover:text-white text-slate-700 flex items-center gap-2 text-xl w-full h-12  font-semibold">
+        Log in with
+        <FaGithub className="text-black" />
         </button>
        </div>
       </div>
 
-      <div className="my-10 ">
-        <h2 className="ml-2 text-2xl font-bold my-5">Find Us On</h2>
-       <div className="social   w-full flex flex-col">
-        <a href="" className="border w-full pl-4  hover:bg-emerald-100  flex items-center py-2 text-slate-600  text-xl font-semibold"><MdFacebook className="text-blue-600  mx-2"/> Facebook</a>
-        <a href="" className="border w-full pl-4  hover:bg-emerald-100  flex items-center py-2 text-slate-600  text-xl font-semibold"><FaTwitter className="text-blue-600  mx-2"/> Twitter</a>
-        <a href="" className="border w-full  pl-4 hover:bg-emerald-100 flex items-center py-2 text-slate-600  text-xl font-semibold"><FaInstagram className="text-fuchsia-600  mx-2"/> Instagram</a>
-       </div>
-      </div>
-
-      <div className="bg-slate-200 mt-20 py-5 rounded">
-      <h2 className="ml-2  text-2xl font-bold   ">Q-Zone</h2>
-      
-       <div className="img  my-5 grid grid-rows-3 gap-5">
-       <img src={Qzon1} alt="" />
-        <img src={Qzon2} alt="" />
-        <img src={Qzon3} alt="" />
+      <div className="my-5 ">
+        <h2 className="ml-4 text-2xl font-bold text-[#005A7F] ">Find Us On</h2>
+       <div className="social   w-full flex flex-col ">
+        <a href="" className=" pl-16  hover:bg-[#ff8d6b] hover:text-white text-slate-700 flex items-center gap-2 text-xl w-full h-12  font-semibold"><MdFacebook className="text-blue-600"/> Facebook</a>
+        <a href="" className="pl-16   hover:bg-[#ff8d6b] hover:text-white text-slate-700 flex items-center gap-2 text-xl w-full h-12  font-semibold"><FaTwitter className="text-blue-600"/> Twitter</a>
+        <a href="" className="pl-16  hover:bg-[#ff8d6b] hover:text-white text-slate-700 flex items-center gap-2 text-xl w-full h-12  font-semibold"><FaInstagram className="text-fuchsia-600"/> Instagram</a>
        </div>
       </div>
     </div>

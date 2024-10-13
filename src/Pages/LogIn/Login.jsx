@@ -1,17 +1,18 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
-import Navbar from "../Shared/Navbar/Navbar";
 import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProviders";
 import Swal from "sweetalert2/src/sweetalert2.js";
+import { GithubAuthProvider, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import auth from "../../Firebase/firebase.config";
 
 const Login = () => {
-  const { login, handleGoogleSignIn, handleGithubSignIn, user } =
-    useContext(AuthContext);
+  const { login,loading, setLoading, handleGithubSignIn, user } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
-  console.log(user);
+
+  
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -36,20 +37,63 @@ const Login = () => {
         console.error(error);
       });
   };
+  const googleProvider = new GoogleAuthProvider()
+  const handleGoogle =()=>{
 
+        signInWithPopup(auth,googleProvider)
+    .then(result =>{
+      const user = result.user; 
+      console.log(user); 
+    
+      navigate(location?.state? location.state : "/");
+      Swal.fire({
+          title: "success!",
+          text: "Login Successfull!",
+          icon: "success"
+        })
+  })
+  .catch(error =>{
+      console.log("error", error);
+  })
+  }
+
+
+  const githubProvider = new GithubAuthProvider();
+  const githubHandle=()=>{
+
+    signInWithPopup(auth, githubProvider)
+    .then(result=>{
+      const user = result.user; 
+      console.log(user); 
+    
+      navigate(location?.state? location.state : "/");
+       Swal.fire({
+           title: "success!",
+           text: "Login Successful!",
+           icon: "success"
+         })
+   })
+   .catch(error =>{
+       console.log("error", error)
+   })
+  }
   return (
-    <div>
+    <div className="">
       <div>
-        <div className="hero ">
-          <div className="hero-content flex-col ">
+        <div className=" ">
+          <div className=" my-10">
             <div className="text-center  my-5 lg:text-left">
-              <h1 className="text-5xl font-bold ">Login Your Account</h1>
+              <h1 className="text-5xl font-bold text-[#005A7F] text-poppins text-center ">Login Your Account</h1>
             </div>
-            <div className="card shrink-0 w-full max-w-sm shadow-2xl shadow-blue-500">
-              <form onSubmit={handleLogin} className="card-body w-96">
+           <div className=" my-10 py-10 flex justify-around items-center">
+           <div >
+              <img className="w-[360px] h-96" src="https://i.ibb.co.com/tLQbn7q/information.jpg" alt="" />
+            </div>
+            <div className=" border  p-5 rounded max-w-sm shadow-lg shadow-[#005A7F]">
+              <form onSubmit={handleLogin} className="  w-[350]">
                 <div className="form-control">
                   <label className="label">
-                    <span className="label-text text-base  font-semibold">
+                    <span className="text-2xl text-[#005A7F]  font-semibold">
                       Email Address
                     </span>
                   </label>
@@ -57,13 +101,13 @@ const Login = () => {
                     type="email"
                     name="email"
                     placeholder="Enter your email address"
-                    className="input input-bordered"
+                    className="h-10 outline-none border-b-2 border-[#005A7F] hover:border-[#ff8d6b] transition-all duration-500"
                     required
                   />
                 </div>
                 <div className="form-control">
                   <label className="label">
-                    <span className="label-text text-base font-semibold">
+                  <span className=" text-2xl text-[#005A7F]  font-semibold">
                       Password
                     </span>
                   </label>
@@ -71,7 +115,7 @@ const Login = () => {
                     type="password"
                     name="password"
                     placeholder="Enter your password"
-                    className="input input-bordered"
+                    className="h-10 outline-none border-b-2 border-[#005A7F] hover:border-[#ff8d6b] transition-all duration-500"
                     required
                   />
                   <label className="label">
@@ -97,28 +141,29 @@ const Login = () => {
                   </label>
                 </div>
                 <div className="form-control mt-6">
-                  <button className="btn bg-slate-900 text-slate-100 text-2xl">
+                  <button className="bg-[#ff8d6b] h-10 text-xl font-bold text-[#364347] rounded-full hover:bg-[#005A7F] hover:text-white transition-all duration-500 ">
                     Log in
                   </button>
                 </div>
-                <div className="flex flex-col items-center">
+                <p className="text-center text-[#ff8d6b] text-2xl font-bold my-2">or</p>
+              </form>
+              
+              <div className="flex justify-center gap-10 items-center">
                   <button
-                    onClick={handleGoogleSignIn}
-                    className="btn btn-outline mb-2 w-[90%] btn-info"
+                    onClick={()=>handleGoogle()}
+                    className=" "
                   >
-                    <FcGoogle />
-                    Log in with Google
+                    <FcGoogle className="hover:scale-110 text-3xl" />
                   </button>
                   <button
-                    onClick={handleGithubSignIn}
-                    className="btn btn-outline mb-2 w-[90%] btn-info"
+                    onClick={()=>{githubHandle()}}
+                    className="hover:scale-110 text-3xl"
                   >
                     <FaGithub />
-                    Log in with gitHub
                   </button>
                 </div>
-              </form>
             </div>
+           </div>
           </div>
         </div>
       </div>

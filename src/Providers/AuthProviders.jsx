@@ -50,41 +50,15 @@ const AuthProviders = ({children}) => {
     const handleGoogleSignIn = ()=>{
         setLoading(true);
         signInWithPopup(auth,googleProvider)
-        .then(result =>{
-            const user = result.user; 
-            console.log(user); 
-            navigate(location?.state?location.state:'/');
-            Swal.fire({
-                title: "success!",
-                text: "Login Successfull!",
-                icon: "success"
-              })
-        })
-        .catch(error =>{
-            console.log("error", error);
-        })
+        
     }
 
 
 // github login
-const githubProvider = new GithubAuthProvider();
+
 
 const handleGithubSignIn =()=>{
-    setLoading(true);
-    signInWithPopup(auth, githubProvider)
-    .then(result=>{
-       const user = result.user; 
-       console.log(user); 
-       navigate(location?.state?location.state:'/');
-        Swal.fire({
-            title: "success!",
-            text: "Login Successfull!",
-            icon: "success"
-          })
-    })
-    .catch(error =>{
-        console.log("error", error)
-    })
+    
 }
 
         
