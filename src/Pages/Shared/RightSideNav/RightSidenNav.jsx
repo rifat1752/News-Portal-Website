@@ -1,10 +1,6 @@
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub, FaInstagram, FaTwitter  } from "react-icons/fa";
 import { MdFacebook } from "react-icons/md";
-
-import Qzon1 from "../../../assets/qZone1.png"
-import Qzon2 from "../../../assets/qZone2.png"
-import Qzon3 from "../../../assets/qZone3.png"
 import { AuthContext } from "../../../Providers/AuthProviders";
 import { useContext, useEffect, useState } from "react";
 import moment from "moment";
@@ -28,31 +24,34 @@ const RightSideNav = () => {
   const formattedTime = currentTime.format("h:mm:ss A");
 
   return (
-    <div className="w-60  h-96 float-end  border-l-2 flex flex-col gap-1  border-[#ff8d6b]">
-        <div className="py-2 border-b">
-          <div className=" text-center  font-semibold text-poppins">{formattedTime}</div>
-          <div className=" text-center">{formattedDate}</div>
+    <div className="w-full h-12  lg:w-60  lg:h-96 float-end   lg:border-l-2 flex flex-row-reverse justify-between mx-2 items-center lg:flex-col gap-5  border-[#ff8d6b]">
+        <div className="lg:w-full py-2 lg:border-b">
+          <div className="w-32 lg:w-full text-base  md:text-lg lg:text-xl text-[#e25125] text-center  font-semibold text-poppins">{formattedTime}</div>
+          <div className=" text-center hidden lg:block">{formattedDate}</div>
         </div>
-      <div className=" border-b">
-       <div className="flex flex-col ">
-       <button onClick={handleGoogleSignIn} className="mb-1 pl-16 hover:bg-[#ff8d6b] hover:text-white text-slate-700 flex items-center gap-2 text-xl w-full h-12  font-semibold">
-       Log in with
-        <FcGoogle />  
+
+      <div className="flex w-full flex-row lg:flex-col gap-5">
+      <div className=" lg:w-full lg:border-b ">
+       <div className="flex flex-row lg:flex-col gap-5 lg:gap-0  ">
+       <button onClick={handleGoogleSignIn} className="lg:mb-1 lg:pl-12 hover:scale-105 lg:hover:bg-[#ff8d6b] hover:text-white text-slate-700 flex items-center gap-2 text-xl w-full h-12  font-semibold">
+       <span className="hidden lg:block">Log in with</span>
+        <FcGoogle  className=" text-xl lg:text-2xl" />  
        </button>
-        <button onClick={handleGithubSignIn} className="mb-2 pl-16  hover:bg-[#ff8d6b] hover:text-white text-slate-700 flex items-center gap-2 text-xl w-full h-12  font-semibold">
-        Log in with
-        <FaGithub className="text-black" />
+        <button onClick={handleGithubSignIn} className="lg:mb-2 lg:pl-12 hover:scale-105  lg:hover:bg-[#ff8d6b] hover:text-white text-slate-700 flex items-center gap-2 text-xl w-full h-12  font-semibold">
+        <span className="hidden lg:block">Log in with</span>
+        <FaGithub className="text-black text-xl lg:text-2xl" />
         </button>
        </div>
       </div>
 
-      <div className="my-5 ">
-        <h2 className="ml-4 text-2xl font-bold text-[#005A7F] ">Find Us On</h2>
-       <div className="social   w-full flex flex-col ">
-        <a href="" className=" pl-16  hover:bg-[#ff8d6b] hover:text-white text-slate-700 flex items-center gap-2 text-xl w-full h-12  font-semibold"><MdFacebook className="text-blue-600"/> Facebook</a>
-        <a href="" className="pl-16   hover:bg-[#ff8d6b] hover:text-white text-slate-700 flex items-center gap-2 text-xl w-full h-12  font-semibold"><FaTwitter className="text-blue-600"/> Twitter</a>
-        <a href="" className="pl-16  hover:bg-[#ff8d6b] hover:text-white text-slate-700 flex items-center gap-2 text-xl w-full h-12  font-semibold"><FaInstagram className="text-fuchsia-600"/> Instagram</a>
+      <div className=" lg:w-full ">
+        <h2 className="hidden lg:block pl-4   text-2xl font-bold text-[#005A7F] ">Find Us On</h2>
+       <div className="social lg:pl-12 gap-5 lg:gap-0   w-full flex flex-row-reverse lg:flex-col ">
+        <a href="" className="  lg:hover:bg-[#ff8d6b] hover:text-white text-slate-700 gap-2 flex items-center text-base md:text-xl w-full h-12   font-semibold"><MdFacebook className="text-blue-600 text-lg md:text-xl lg:text-2xl hover:scale-105"/> <span className="hidden lg:block">Facebook</span></a>
+        <a href="" className="   lg:hover:bg-[#ff8d6b] hover:text-white text-slate-700 gap-2 flex items-center text-base md:text-xl w-full h-12  font-semibold"><FaTwitter className="text-blue-600 text-lg md:text-xl  lg:text-2xl hover:scale-105"/> <span className="hidden lg:block">Twitter</span> </a>
+        <a href="" className="  lg:hover:bg-[#ff8d6b] hover:text-white text-slate-700 gap-2 flex items-center  text-base md:text-xl w-full h-12  font-semibold"><FaInstagram className="text-fuchsia-600 text-lg md:text-xl lg:text-2xl hover:scale-105"/> <span className="hidden lg:block">Instagram</span> </a>
        </div>
+      </div>
       </div>
     </div>
   );

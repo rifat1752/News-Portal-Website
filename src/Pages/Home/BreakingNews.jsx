@@ -21,13 +21,13 @@ useEffect(() => {
       
     return (
         <div className="flex w-full overflow-hidden">
-            <button className="w-32 text-white text-poppins h-10 bg-[#f8825e]">Breaking News</button>
-            <Marquee pauseOnHover={true} speed={100} className="text-lg font-semibold">
+            <button className="w-36 text-white text-poppins font-semibold h-10 text-xs sm:text-sm md:text-base  bg-[#f8825e]">Breaking News</button>
+            <Marquee pauseOnHover={true} speed={100} className=" font-semibold">
                 {
                     headLines.articles?.map((headLine, index)=> headLine.title !== "[Removed]" && (
                         <Link onClick={() => handleClicked(index)} to={`/news/${cat}/${headLine?.title}`} key={index} className="flex flex-row items-center gap-2 border-r-4 px-4 border-[#ffa88d] ">
-                            <h1 className="text-lg text-[#f8825e]">{headLine?.author?`${headLine?.author}:` :""}</h1>
-                        <p className="  text-base text-slate-600 font-Poppins ">{headLine.title}</p>
+                            <h1 className="text-xs sm:text-sm md:text-base text-[#f8825e]">{headLine?.author?`${headLine?.author}:` :""}</h1>
+                        <p className="  sm:text-sm md:text-base  text-slate-600 font-Poppins ">{headLine.title}</p>
                         </Link>
                     ))
                 }

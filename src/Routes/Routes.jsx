@@ -6,7 +6,6 @@ import Register from "../Pages/Register/Register";
 import News from "../Pages/News/News";
 import PrivateRoute from "./PrivateRoute";
 import About from "../Pages/About/About";
-import Navbar1 from "../Pages/Shared/Navbar/Navbar1";
 import RegularPage from "../Pages/RegularPage/RegularPage";
 import BusinessPage from "../Pages/BusinessPage/BusinessPage";
 import InternationalPage from "../Pages/InternationalPage/InternationalPage";
@@ -85,10 +84,6 @@ const router = createBrowserRouter([
         element:<TravelPage/>
       },
       {
-        path:"nav",
-        element:<Navbar1/>
-      },
-      {
         path: "/news/:cat/:id",
         element: (
           <PrivateRoute>
@@ -106,15 +101,15 @@ const router = createBrowserRouter([
       },
       {
         path:'/dashboard',
-        element:<Dashboard/>,
+        element:<PrivateRoute><Dashboard/></PrivateRoute>,
         children:[
           {
             index:true,
-            element:<BookMarked></BookMarked>
+            element:<PrivateRoute><BookMarked/></PrivateRoute>
           },
           {
             path:"profile",
-            element:<Profile/>
+            element:<PrivateRoute><Profile/></PrivateRoute>
           }
         ]
       }

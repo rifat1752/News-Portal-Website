@@ -68,15 +68,15 @@ const NewsCardShorts = ({ booked, anews, index, cat, onRemove }) => {
   };
 
     return (
-        <div className="bg-white overflow-hidden group relative w-72 hover:border-white border-b-2 border-[#ffa589] h-44 flex flex-col justify-center ">
-            <div className="relative  w-72   h-44">
-               <figure className=" absolute top-0 w-72   h-44">
-                <img className="w-72 bg-slate-600 p-[1px] opacity-0  group-hover:opacity-100  transition brightness-75 duration-300 ease-out  h-44 object-cover" src={anews.urlToImage} alt="news" />
+        <div className="bg-white overflow-hidden group relative  mt-5 w-60 lg:w-72 hover:border-white border-b-2 border-[#ffa589] h-52  lg:h-44 ">
+            <div className="relative  w-60 lg:w-72 flex flex-col justify-start    h-52 lg:h-44">
+               <figure className=" absolute top-0 w-60 lg:w-72 h-52 lg:h-44">
+                <img className="w-60 lg:w-72 h-52 lg:h-44 bg-slate-600 p-[1px] opacity-0  group-hover:opacity-100  transition brightness-75 duration-300 ease-out  object-cover" src={anews.urlToImage} alt="news" />
 
                 <div onClick={handleAddToNews} className="absolute cursor-pointer text-white text-lg text-center top-0 right-0 z-10">
                 </div>
               </figure> 
-              <div className="absolute  opacity-0 group-hover:opacity-100 group-hover:backdrop-blur-sm flex flex-col gap-2 justify-center items-center   w-72   h-44 z-10">
+              <div className="absolute  opacity-0 group-hover:opacity-100 group-hover:backdrop-blur-sm flex flex-col gap-2 justify-center items-center  w-60 lg:w-72 h-52 lg:h-44 z-10">
                 <Link to={`/news/${cat}/${anews?.title}`}  className="text-slate-50 text-lg h-10   hover:bg-[#ff7f58] w-44 text-center p-1 rounded-full">Read Now</Link>
                 <div onClick={handleAddToNews} className=" cursor-pointer  text-lg text-center  z-10">
                 <div 
@@ -97,7 +97,7 @@ const NewsCardShorts = ({ booked, anews, index, cat, onRemove }) => {
               </div>
               
             <h1 className="text-xl px-2 font-semibold text-[#005A7F]  mb-2">{anews.title}</h1>
-            <h2 className="text-sm px-2">
+            <h2 className="text-sm px-2 ">
             {anews?.description?.length > 50 ? (
               <p>
                 {anews?.description?.slice(0, 50)} ...

@@ -69,7 +69,7 @@ const NewsCard = ({ booked, anews, index, cat, onRemove }) => {
 
   return (
     <div>
-      <div className="w-72 h-[410px] flex flex-col m-5 bg-base-100 border shadow-2xl overflow-hidden">
+      <div className="w-64 xl:w-72 h-[450px] flex flex-col m-5 bg-base-100 border shadow-2xl overflow-hidden">
         <figure className=" w-full overflow-hidden h-[210px]">
           <img className="w-full h-full object-cover hover:scale-110  transition duration-300" src={anews.urlToImage} alt="news" />
           

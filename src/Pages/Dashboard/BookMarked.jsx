@@ -17,7 +17,7 @@ const BookMarked = () => {
 
   return (
     <div>
-      <div className="flex gap-3  flex-wrap ">
+      <div className="flex flex-wrap justify-center">
         {bookedNews.map(news => (
           <NewsCard 
             key={news.index}

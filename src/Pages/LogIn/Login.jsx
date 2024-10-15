@@ -78,7 +78,7 @@ const Login = () => {
    })
   }
   return (
-    <div className="">
+    <div className=" ">
       <div>
         <div className=" ">
           <div className=" my-10">
@@ -86,14 +86,14 @@ const Login = () => {
               <h1 className="text-5xl font-bold text-[#005A7F] text-poppins text-center ">Login Your Account</h1>
             </div>
            <div className=" my-10 py-10 flex justify-around items-center">
-           <div >
-              <img className="w-[360px] h-96" src="https://i.ibb.co.com/tLQbn7q/information.jpg" alt="" />
+           <div className="hidden md:block" >
+              <img className="w-72 h-[320px] lg:w-[360px] lg:h-96" src="https://i.ibb.co.com/tLQbn7q/information.jpg" alt="" />
             </div>
-            <div className=" border  p-5 rounded max-w-sm shadow-lg shadow-[#005A7F]">
-              <form onSubmit={handleLogin} className="  w-[350]">
+            <div className=" border  p-5 rounded   shadow-lg shadow-[#005A7F]">
+              <form onSubmit={handleLogin} className=" flex flex-col sm:w-80 w-[280px]">
                 <div className="form-control">
                   <label className="label">
-                    <span className="text-2xl text-[#005A7F]  font-semibold">
+                    <span className="text-2xl text-[#005A7F]  font-semibold"> 
                       Email Address
                     </span>
                   </label>
