@@ -4,6 +4,8 @@ import { AuthContext } from "../../../Providers/AuthProviders";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 import { MdBookmarkAdd, MdBookmarkAdded } from "react-icons/md";
+import { FaBookOpen } from "react-icons/fa";
+import toast from "react-hot-toast";
 
 const NewsCardShorts = ({ booked, anews, index, cat, onRemove }) => {
     const { category, setCategory, pageIndex, setPageIndex } = useContext(AuthContext);
@@ -32,24 +34,13 @@ const NewsCardShorts = ({ booked, anews, index, cat, onRemove }) => {
       savedNews = [...savedNews, newsToSave];
       localStorage.setItem('savedNews', JSON.stringify(savedNews));
       setBookmark(true);
-      Swal.fire({
-        position: "center",
-        icon: "success",
-        title: "News has been saved",
-        showConfirmButton: false,
-        timer: 1500,
-      });
+      toast.success('News has been saved!')
+      
     } else {
       const updatedNews = savedNews.filter(news => !(news.index === index && news.cat === cat));
       localStorage.setItem('savedNews', JSON.stringify(updatedNews));
       setBookmark(false);
-      Swal.fire({
-        position: "center",
-        icon: "info",
-        title: "News has been removed",
-        showConfirmButton: false,
-        timer: 1500,
-      });
+      toast.success('News has been removed!')
 
       if (onRemove) {
         onRemove(index, cat); // Notify BookMarked.jsx to update state
@@ -77,7 +68,7 @@ const NewsCardShorts = ({ booked, anews, index, cat, onRemove }) => {
                 </div>
               </figure> 
               <div className="absolute  opacity-0 group-hover:opacity-100 group-hover:backdrop-blur-sm flex flex-col gap-2 justify-center items-center  w-60 lg:w-72 h-52 lg:h-44 z-10">
-                <Link to={`/news/${cat}/${anews?.title}`}  className="text-slate-50 text-lg h-10   hover:bg-[#ff7f58] w-44 text-center p-1 rounded-full">Read Now</Link>
+                <Link to={`/news/${cat}/${anews?.title}`}  className="text-slate-50 text-lg h-10   hover:bg-[#ff7f58]  w-48 text-center p-1 rounded-full flex justify-center items-center gap-2"><FaBookOpen className="text-blue-500 " />Read Now</Link>
                 <div onClick={handleAddToNews} className=" cursor-pointer  text-lg text-center  z-10">
                 <div 
   className={`w-48 text-lg h-10 text-slate-50 p-1 rounded-full transition-colors duration-300 ${bookmark ? "hover:bg-green-400" : "hover:bg-[#f87851]"}`}

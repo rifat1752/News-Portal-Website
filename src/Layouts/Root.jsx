@@ -1,7 +1,6 @@
 import { Outlet } from "react-router-dom";
 import Header from "../Pages/Shared/Header/Header";
 import BreakingNews from "../Pages/Home/BreakingNews";
-import Navbar from "../Pages/Shared/Navbar/Navbar";
 import Footer from "../Pages/Shared/Footer/Footer";
 import Navbar_Categories from "../Pages/Shared/Navbar/Navbar_Categories";
 

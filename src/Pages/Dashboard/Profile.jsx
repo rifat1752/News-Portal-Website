@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../../Providers/AuthProviders";
 import { getAuth, updateProfile, updateEmail, updatePassword } from "firebase/auth";
 import Swal from 'sweetalert2';
+import toast from "react-hot-toast";
 
 const Profile = () => {
   const { user } = useContext(AuthContext);
@@ -19,48 +20,28 @@ const Profile = () => {
       displayName: displayName,
       photoURL: photoURL
     }).then(() => {
-      Swal.fire({
-        icon: 'success',
-        title: 'Profile updated successfully!',
-      });
+      toast.success(' Profile updated successfully!')
+     
     }).catch(error => {
-      Swal.fire({
-        icon: 'error',
-        title: 'Error updating profile',
-        text: error.message,
-      });
+      toast.error("Error! Failed to Update profile.")
     });
   };
 
   // Function to update email
   const handleUpdateEmail = () => {
     updateEmail(auth.currentUser, email).then(() => {
-      Swal.fire({
-        icon: 'success',
-        title: 'Email updated successfully!',
-      });
+      toast.success(' Email updated successfully!')
     }).catch(error => {
-      Swal.fire({
-        icon: 'error',
-        title: 'Error updating email',
-        text: error.message,
-      });
+      toast.error("Error! Failed to Update Email")
     });
   };
 
   // Function to update password
   const handleUpdatePassword = () => {
     updatePassword(auth.currentUser, password).then(() => {
-      Swal.fire({
-        icon: 'success',
-        title: 'Password updated successfully!',
-      });
+      toast.success(' Password updated successfully!')
     }).catch(error => {
-      Swal.fire({
-        icon: 'error',
-        title: 'Error updating password',
-        text: error.message,
-      });
+      toast.error("Error! Failed to Update Password.")
     });
   };
 

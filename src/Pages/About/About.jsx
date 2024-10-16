@@ -1,13 +1,27 @@
 import { useEffect, useState } from "react";
+import Loading from "../../Components/Loading/Loading";
 
 
 const About = () => {
+  const [loading, setLoading] = useState(false);
   const [employees, setEmployees] = useState([]);
   useEffect(() => {
     fetch("https://api.npoint.io/567667a5322c5162a2ec")
       .then((res) => res.json())
-      .then((data) => setEmployees(data));
+      .then((data) => {
+        setEmployees(data);
+        setLoading(false); 
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+        setLoading(false); // Ensure loading is turned off even if there's an error
+      });
   }, []);
+
+  
+  if (loading) {
+    return <Loading />;
+  }
   return (
     <div className="">
       <div className=" py-5 h-96  flex flex-col justify-center items-center ">

@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProviders";
 import Swal from "sweetalert2/src/sweetalert2.js";
+import toast from "react-hot-toast";
 
 const Register = () => {
   const { user, createUser } = useContext(AuthContext);
@@ -22,13 +23,15 @@ const Register = () => {
         console.log(user);
         e.target.reset();
         navigate(location?.state?location.state:'/');
-        Swal.fire({
-          title: "success!",
-          text: "Register Successful!",
-          icon: "success",
-        });
+       
+        toast.success('Sign Up successful!')
       })
-      .catch((error) => console.log(error.message));
+      .catch((error) => {
+        console.log(error.message);
+        toast.error("Error! Failed to Sign Up.")
+        toast.success('Sign Up successful!')
+      });
+
   };
 
   return (

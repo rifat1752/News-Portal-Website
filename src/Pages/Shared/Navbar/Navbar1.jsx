@@ -4,6 +4,7 @@ import Navbar_Categories from "./Navbar_Categories";
 import { AuthContext } from "../../../Providers/AuthProviders";
 import { useContext } from "react";
 import Swal from "sweetalert2";
+import toast from "react-hot-toast";
 
 
 const Navbar1 = () => {
@@ -12,18 +13,11 @@ const Navbar1 = () => {
     const handleSignOut = () => {
         logOut()
           .then(() => {
-            Swal.fire({
-              title: "success!",
-              text: "LogOut Successfull!",
-              icon: "success",
-            });
+            toast.success('Sign Out successful!')
           })
           .catch((error) => {
-            Swal.fire({
-              title: "success!",
-              text: "LogOut Successfull!",
-              icon: "error",
-            });
+            toast.error("Error! Failed to Sign Out")
+            
           });
       };
     return (

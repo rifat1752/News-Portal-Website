@@ -6,6 +6,7 @@ import { AuthContext } from "../../Providers/AuthProviders";
 import Swal from "sweetalert2/src/sweetalert2.js";
 import { GithubAuthProvider, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import auth from "../../Firebase/firebase.config";
+import toast from "react-hot-toast";
 
 const Login = () => {
   const { login,loading, setLoading, handleGithubSignIn, user } = useContext(AuthContext);
@@ -27,14 +28,12 @@ const Login = () => {
         console.log(Result.user);
         e.target.reset();
         navigate(location?.state ? location.state : "/");
-        Swal.fire({
-          title: "success!",
-          text: "Login Successfull!",
-          icon: "success",
-        });
+        
+      toast.success('Log In successful!')
       })
       .catch((error) => {
         console.error(error);
+        toast.error("Error! Failed to Login.")
       });
   };
   const googleProvider = new GoogleAuthProvider()
@@ -46,14 +45,11 @@ const Login = () => {
       console.log(user); 
     
       navigate(location?.state? location.state : "/");
-      Swal.fire({
-          title: "success!",
-          text: "Login Successfull!",
-          icon: "success"
-        })
+      toast.success('Log In successful!')
   })
   .catch(error =>{
       console.log("error", error);
+      toast.error("Error! Failed to Login.")
   })
   }
 
@@ -67,14 +63,11 @@ const Login = () => {
       console.log(user); 
     
       navigate(location?.state? location.state : "/");
-       Swal.fire({
-           title: "success!",
-           text: "Login Successful!",
-           icon: "success"
-         })
+      toast.success('Log In successful!')
    })
    .catch(error =>{
        console.log("error", error)
+       toast.error("Error! Failed to Login.")
    })
   }
   return (

@@ -3,17 +3,32 @@ import NewsCard from "../Shared/NewsCard/NewsCard";
 import RightSideNav from "../Shared/RightSideNav/RightSidenNav";
 import TopHeadLine from "../Shared/TopHeadLine/TopHeadLine";
 import NewsCardShorts from "../Shared/NewsCard/NewsCardShorts";
+import Loading from "../../Components/Loading/Loading";
 
 
 const SportsPage = () => {
+  const [loading, setLoading] = useState(false);
+  const [news, setNews] = useState([]);
+
     const cat = "sports";
 
-    const [news, setNews] = useState([]);
     useEffect(()=>{
+      setLoading(true);
       fetch(`https://newsapi.org/v2/everything?q=${cat}&apiKey=${import.meta.env.VITE_NEWS_API_KEY}`)
       .then(res=>res.json())
-      .then(data=>setNews(data.articles))
+      .then(data=>{
+        setNews(data.articles);
+        setLoading(false);
+      } )
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+        setLoading(false); // Ensure loading is turned off even if there's an error
+      });
     },[])
+
+    if (loading) {
+      return <Loading />;
+    }
     return (
         <div>
             

@@ -4,6 +4,8 @@ import { MdBookmarkAdd,MdBookmarkAdded } from "react-icons/md";
 import { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../../../Providers/AuthProviders";
 import Swal from 'sweetalert2';
+import { FaBookOpen } from "react-icons/fa";
+import toast from "react-hot-toast";
 
 const NewsCard = ({ booked, anews, index, cat, onRemove }) => {
   const { category, setCategory, pageIndex, setPageIndex } = useContext(AuthContext);
@@ -23,6 +25,7 @@ const NewsCard = ({ booked, anews, index, cat, onRemove }) => {
     setPageIndex(index);
   };
 
+  //bookmarked
   const handleAddToNews = () => {
     let savedNews = JSON.parse(localStorage.getItem('savedNews')) || [];
     const isExist = savedNews.find(news => news.index === index && news.cat === cat);
@@ -32,24 +35,13 @@ const NewsCard = ({ booked, anews, index, cat, onRemove }) => {
       savedNews = [...savedNews, newsToSave];
       localStorage.setItem('savedNews', JSON.stringify(savedNews));
       setBookmark(true);
-      Swal.fire({
-        position: "center",
-        icon: "success",
-        title: "News has been saved",
-        showConfirmButton: false,
-        timer: 1500,
-      });
+      toast.success('News has been saved!')
+      
     } else {
       const updatedNews = savedNews.filter(news => !(news.index === index && news.cat === cat));
       localStorage.setItem('savedNews', JSON.stringify(updatedNews));
       setBookmark(false);
-      Swal.fire({
-        position: "center",
-        icon: "info",
-        title: "News has been removed",
-        showConfirmButton: false,
-        timer: 1500,
-      });
+      toast.success('News has been removed!')
 
       if (onRemove) {
         onRemove(index, cat); // Notify BookMarked.jsx to update state
@@ -57,6 +49,7 @@ const NewsCard = ({ booked, anews, index, cat, onRemove }) => {
     }
   };
 
+  
   const getSavedNewsByCategoryAndIndex = (cat, index) => {
     // Retrieve the saved news array from localStorage
     const savedNews = JSON.parse(localStorage.getItem('savedNews')) || [];
@@ -68,7 +61,8 @@ const NewsCard = ({ booked, anews, index, cat, onRemove }) => {
   };
 
   return (
-    <div>
+    <div className="">
+    
       <div className="w-64 xl:w-72 h-[450px] flex flex-col m-5 bg-base-100 border shadow-2xl overflow-hidden">
         <figure className=" w-full overflow-hidden h-[210px]">
           <img className="w-full h-full object-cover hover:scale-110  transition duration-300" src={anews.urlToImage} alt="news" />
@@ -83,8 +77,8 @@ const NewsCard = ({ booked, anews, index, cat, onRemove }) => {
               <p>
                 {anews?.description?.slice(0, 50)} ...
                 <Link
-                  onClick={() => handleClicked()}
-                  to={`/news/${cat}/${anews?.title}`}
+                 onClick={() => handleClicked()}
+                 to={`/news/${cat}/${anews?.title}`}
                   className="text-orange-600 text-center font-semi-bold"
                 >
                   read more
@@ -95,16 +89,21 @@ const NewsCard = ({ booked, anews, index, cat, onRemove }) => {
             )}
           </h2>
           </div>
-          <div onClick={handleAddToNews} className=" cursor-pointer text-white text-lg text-center top-0 right-0 z-10">
+          <div className=" flex flex-col  h-16  justify-start gap-2 items-center top-0 right-0 z-10">
+          <div onClick={handleAddToNews} className=" cursor-pointer text-white  text-center ">
            {
-             <div className={` flex justify-center text-3xl items-center   `} >{bookmark?<MdBookmarkAdded className="text-blue-600"/>:<MdBookmarkAdd className="text-gray-700"/>} </div>
+             <div className={` flex justify-center text-3xl items-center   `} >{bookmark?<MdBookmarkAdded className="text-blue-600 hover:scale-110"/>:<MdBookmarkAdd className="text-gray-700 hover:scale-110"/>} </div>
            }
           </div>
+          <Link  className="hover:scale-110" onClick={() => handleClicked()}
+                 to={`/news/${cat}/${anews?.title}`}>
+          <FaBookOpen className="text-[#f87851] text-2xl" />
+          </Link>
+          </div>
+          
         </div>
       </div>
-      <div>
-        
-      </div>
+      
     </div>
   );
 };
