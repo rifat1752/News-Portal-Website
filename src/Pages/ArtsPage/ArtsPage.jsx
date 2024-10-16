@@ -25,7 +25,7 @@ const ArtsPage = () => {
   },[])
 
 
-  if (loading) {
+  if (loading || !news) {
     return <Loading />;
   }
     return (

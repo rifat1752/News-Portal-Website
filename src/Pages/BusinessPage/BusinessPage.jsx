@@ -29,7 +29,7 @@ const BusinessPage = () => {
   },[])
 //   
 
-if (loading) {
+if (loading || !news) {
   return <Loading />;
 }
     

@@ -30,7 +30,7 @@ const FashionPage = () => {
 
   
   
-    if (loading) {
+    if (loading || !news) {
       return <Loading />;
     }
     

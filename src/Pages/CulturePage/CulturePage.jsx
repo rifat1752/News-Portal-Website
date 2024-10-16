@@ -25,7 +25,7 @@ const CulturePage = () => {
       });
     },[])
 
-    if (loading) {
+    if (loading || !news) {
       return <Loading />;
     }
   

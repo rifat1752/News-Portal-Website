@@ -26,7 +26,7 @@ const SportsPage = () => {
       });
     },[])
 
-    if (loading) {
+    if (loading || !news) {
       return <Loading />;
     }
     return (

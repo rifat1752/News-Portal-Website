@@ -30,7 +30,7 @@ const LifeHackpage = () => {
   
 
   
-    if (loading) {
+    if (loading || !news) {
       return <Loading />;
     }
     return (

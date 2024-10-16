@@ -50,7 +50,7 @@ const formattedTime = dateObj.toLocaleTimeString('en-US', {
 });
 
 
-if (loading) {
+if (loading ) {
   return <Loading />;
 }
   return (

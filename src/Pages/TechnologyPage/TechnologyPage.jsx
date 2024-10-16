@@ -29,7 +29,7 @@ const TechnologyPage = () => {
     },[])
   
 
-    if (loading) {
+    if (loading || !news) {
       return <Loading />;
     }
   

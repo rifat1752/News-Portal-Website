@@ -25,7 +25,7 @@ const EntertainmentPage = () => {
       });
     },[])
 
-    if (loading) {
+    if (loading || !news) {
       return <Loading />;
     }
     return (
