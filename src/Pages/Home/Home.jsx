@@ -13,9 +13,7 @@ const Home = () => {
   useEffect(() => {
     setLoading(true);
     fetch(
-      `https://newsapi.org/v2/everything?q=${cat}&apiKey=${
-        import.meta.env.VITE_NEWS_API_KEY
-      }`
+      `https://newsapi.org/v2/everything?q=${cat}&apiKey=${import.meta.env.VITE_NEWS_API_KEY}`
     )
       .then((res) => res.json())
       .then((data) => {
