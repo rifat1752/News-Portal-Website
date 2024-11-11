@@ -24,7 +24,7 @@ const Home = () => {
       });
   }, []);
 
-  console.log("news",news)
+
   if (loading || !news) {
     return <Loading />;
   }

@@ -13,7 +13,7 @@ const About = () => {
         setLoading(false); 
       })
       .catch((error) => {
-        console.error("Error fetching data:", error);
+        console.error( error);
         setLoading(false); // Ensure loading is turned off even if there's an error
       });
   }, []);

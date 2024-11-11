@@ -15,12 +15,12 @@ const Register = () => {
     const photoURL = form.get("photo");
     const email = form.get("email");
     const password = form.get("password");
-    console.log(name, photoURL, email, password);
+   
     //
     createUser(email, password)
       .then((result) => {
         const user = result.user;
-        console.log(user);
+     
         e.target.reset();
         navigate(location?.state?location.state:'/');
        

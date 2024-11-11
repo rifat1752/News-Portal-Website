@@ -26,7 +26,7 @@ const NewsCardShorts = ({ booked, anews, index, cat, onRemove }) => {
   const handleClicked = () => {
     setCategory(cat);
     setPageIndex(index);
-    console.log("shortcard",cat,index)
+
   };
 
 

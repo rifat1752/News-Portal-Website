@@ -18,7 +18,7 @@ useEffect(() => {
       .then((res) => res.json())
       .then((data) =>setHeadLines(data.filter(article => article.category === cat)));
   }, []);
-      console.log("breaking news", headLines)
+  
     return (
         <div className="flex w-full overflow-hidden">
             <button className="w-36 text-white text-poppins font-semibold h-10 text-xs sm:text-sm md:text-base  bg-[#f8825e]">Breaking News</button>

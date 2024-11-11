@@ -25,7 +25,6 @@ const Login = () => {
     // log in
     login(email, password)
       .then((Result) => {
-        console.log(Result.user);
         e.target.reset();
         navigate(location?.state ? location.state : "/");
         
@@ -42,8 +41,7 @@ const Login = () => {
         signInWithPopup(auth,googleProvider)
     .then(result =>{
       const user = result.user; 
-      console.log(user); 
-    
+     
       navigate(location?.state? location.state : "/");
       toast.success('Log In successful!')
   })
@@ -60,7 +58,7 @@ const Login = () => {
     signInWithPopup(auth, githubProvider)
     .then(result=>{
       const user = result.user; 
-      console.log(user); 
+
     
       navigate(location?.state? location.state : "/");
       toast.success('Log In successful!')
