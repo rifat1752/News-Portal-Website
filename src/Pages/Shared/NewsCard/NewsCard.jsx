@@ -8,7 +8,7 @@ import { FaBookOpen } from "react-icons/fa";
 import toast from "react-hot-toast";
 
 const NewsCard = ({ booked, anews, index, cat, onRemove }) => {
-  const { category, setCategory, pageIndex, setPageIndex } = useContext(AuthContext);
+  const {user, category, setCategory, pageIndex, setPageIndex } = useContext(AuthContext);
   const [bookmark, setBookmark] = useState(false);
 
   // Check if the news is already bookmarked when the component mounts

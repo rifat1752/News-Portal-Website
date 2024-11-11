@@ -12,16 +12,15 @@ const News = () => {
   const [news, setNews] = useState([]);
   const [selectedNews, setSelectedNews] = useState(null);
 
+  console.log("news page auth saved",category,pageIndex)
 
   useEffect(()=>{
     setLoading(true);
-    fetch(`https://newsapi.org/v2/everything?q=${category}&apiKey=${import.meta.env.VITE_NEWS_API_KEY}`)
+    fetch(`${import.meta.env.VITE_NEWS_LINK}`)
     .then(res=>res.json())
     .then(data=>{
-      setNews(data.articles);
+      setNews(data.filter(article => article.category === category));
       // Find the news article based on pageIndex
-      const foundNews = data.articles.find((article, index) => index === pageIndex);
-      setSelectedNews(foundNews);
       setLoading(false);
     })
     .catch((error) => {
@@ -29,7 +28,14 @@ const News = () => {
       setLoading(false); // Ensure loading is turned off even if there's an error
     });
 }, [category, pageIndex]);
+// console.log(`auth news cat ${category}`,news)
 
+
+useEffect(() => {
+  const foundNews = news.find((article, index) => index === pageIndex);
+  setSelectedNews(foundNews);
+  console.log("founded", foundNews)
+}, [news, pageIndex]);
 
 const dateStr =selectedNews?.publishedAt;  // The timestamp
 

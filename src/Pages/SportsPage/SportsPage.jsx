@@ -14,11 +14,11 @@ const SportsPage = () => {
 
     useEffect(()=>{
       setLoading(true);
-      fetch(`https://newsapi.org/v2/everything?q=${cat}&apiKey=${import.meta.env.VITE_NEWS_API_KEY}`)
-      .then(res=>res.json())
-      .then(data=>{
-        setNews(data.articles);
-        setLoading(false);
+    fetch(`${import.meta.env.VITE_NEWS_LINK}`)
+    .then(res=>res.json())
+    .then(data=>{
+      setNews(data.filter(article => article.category === cat));
+      setLoading(false);
       } )
       .catch((error) => {
         console.error("Error fetching data:", error);
@@ -52,12 +52,12 @@ const SportsPage = () => {
 
               <div className="my-10  flex ">
                 <div className=" flex gap-5 lg:w-9/12 flex-wrap justify-center">
-          {news.slice(4,news?.length).map(
+          {news.slice(3,news?.length).map(
             (anews, index) =>
               anews.title !== "[Removed]" && (
                 <NewsCardShorts
-                  key={index}
-                  index={index}
+                  key={index+3}
+                  index={index+3}
                   cat={cat}
                   anews={anews}
                 ></NewsCardShorts>

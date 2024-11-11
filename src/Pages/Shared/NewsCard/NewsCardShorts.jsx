@@ -8,9 +8,12 @@ import { FaBookOpen } from "react-icons/fa";
 import toast from "react-hot-toast";
 
 const NewsCardShorts = ({ booked, anews, index, cat, onRemove }) => {
-    const { category, setCategory, pageIndex, setPageIndex } = useContext(AuthContext);
+    const {user, category, setCategory, pageIndex, setPageIndex } = useContext(AuthContext);
   const [bookmark, setBookmark] = useState(false);
 
+  const loginAlert =()=>{
+    toast.error("Please, Login to bookmark this news")
+  }
   // Check if the news is already bookmarked when the component mounts
   useEffect(() => {
     if (booked) {
@@ -23,7 +26,9 @@ const NewsCardShorts = ({ booked, anews, index, cat, onRemove }) => {
   const handleClicked = () => {
     setCategory(cat);
     setPageIndex(index);
+    console.log("shortcard",cat,index)
   };
+
 
   const handleAddToNews = () => {
     let savedNews = JSON.parse(localStorage.getItem('savedNews')) || [];
@@ -41,7 +46,6 @@ const NewsCardShorts = ({ booked, anews, index, cat, onRemove }) => {
       localStorage.setItem('savedNews', JSON.stringify(updatedNews));
       setBookmark(false);
       toast.success('News has been removed!')
-
       if (onRemove) {
         onRemove(index, cat); // Notify BookMarked.jsx to update state
       }
@@ -64,16 +68,19 @@ const NewsCardShorts = ({ booked, anews, index, cat, onRemove }) => {
                <figure className=" absolute top-0 w-60 lg:w-72 h-52 lg:h-44">
                 <img className="w-60 lg:w-72 h-52 lg:h-44 bg-slate-600 p-[1px] opacity-0  group-hover:opacity-100  transition brightness-75 duration-300 ease-out  object-cover" src={anews.urlToImage} alt="news" />
 
-                <div onClick={handleAddToNews} className="absolute cursor-pointer text-white text-lg text-center top-0 right-0 z-10">
+                <div  className="absolute cursor-pointer text-white text-lg text-center top-0 right-0 z-10">
                 </div>
               </figure> 
               <div className="absolute  opacity-0 group-hover:opacity-100 group-hover:backdrop-blur-sm flex flex-col gap-2 justify-center items-center  w-60 lg:w-72 h-52 lg:h-44 z-10">
-                <Link to={`/news/${cat}/${anews?.title}`}  className="text-slate-50 text-lg h-10   hover:bg-[#ff7f58]  w-48 text-center p-1 rounded-full flex justify-center items-center gap-2"><FaBookOpen className="text-blue-500 " />Read Now</Link>
+                <Link onClick={() => handleClicked()} to={`/news/${cat}/${anews?.title}`}  className="text-slate-50 text-lg h-10   hover:bg-[#ff7f58]  w-48 text-center p-1 rounded-full flex justify-center items-center gap-2"><FaBookOpen className="text-blue-500 " />Read Now</Link>
+             {
+              user?(
                 <div onClick={handleAddToNews} className=" cursor-pointer  text-lg text-center  z-10">
                 <div 
   className={`w-48 text-lg h-10 text-slate-50 p-1 rounded-full transition-colors duration-300 ${bookmark ? "hover:bg-green-400" : "hover:bg-[#f87851]"}`}
 >
-  {bookmark ? (
+  {
+  bookmark ? (
     <div className="flex justify-center items-center gap-2">
       <MdBookmarkAdded className="text-blue-600 text-2xl" /> <p>Bookmarked</p>
     </div>
@@ -81,10 +88,17 @@ const NewsCardShorts = ({ booked, anews, index, cat, onRemove }) => {
     <div className="flex justify-center items-center gap-2">
       <MdBookmarkAdd className="text-gray-500 text-2xl" /> <p>Bookmark</p>
     </div>
-  )}
+  )
+  }
 </div>
 
           </div>
+              )
+              :
+              (<div onClick={loginAlert} className="flex justify-center hover:bg-[#f87851] w-48 h-10 rounded-full p-1 font-semibold text-slate-50 items-center gap-2">
+                <MdBookmarkAdd className=" text-gray-500  text-2xl" /> <p>Bookmark</p>
+              </div>)
+             }
               </div>
               
             <h1 className="text-xl px-2 font-semibold text-[#005A7F]  mb-2">{anews.title}</h1>
